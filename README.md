@@ -1,107 +1,99 @@
-# **Library Database System**  
+# Budget Manager with Bitcoin Tracking
 
-## **Overview**  
-This assessment project is a **PostgreSQL** database for a library system that tracks books, customers, loans, and reviews. The database includes queries for **data aggregation, filtering, and table joins** to analyse library data effectively.  
+This is a personal finance application that helps you manage your income, expenses, and crypto investments.
 
----
+## Features:
 
-## **Installation Guide**  
+- **Income and Expense Tracking:** Manually input your income and expenses, categorised for easy budgeting.
+- **CSV File Storage:** Data is saved securely in CSV files for future reference and analysis.
+- **Top Spending Category:** See which category you're spending the most on to optimise your budget.
+- **Crypto Investment Tracking:** Track your Bitcoin (BTC) purchases and holdings.
+- **Real-time BTC Price Check:** View the current value of your BTC wallet based on CoinmarketCap API.
 
-### **1. Prerequisites**  
-Ensure you have **PostgreSQL** installed on your system.  
-- Download from: [https://www.postgresql.org/download/](https://www.postgresql.org/download/)  
-- Install and start the **PostgreSQL** service.  
+## Setting Up
 
-### **2. Setting Up the Database**  
-1. Open **PostgreSQL** (Linux/WSL) 
+1. **Create a Virtual Environment:**
+
+    - Open your linux-based terminal
+    - CD into the root folder of this application
+    - Run the following command to create a virtual environment called '.venv'
+
+        ```bash
+        python3 -m venv .venv
+        ```
+    - Activate the virtual environment
+
+        ```bash
+        source .venv/bin/activate
+        ```
+
+2. **Install Dependancies**
+    
+    - Inside the activated virtual environment, run the following command:
+
     ```bash
-    sudo -u postgres psql
+    pip install -r requirements.txt
     ```
-    (MacOS)
+
+3. **Get your CoinMarketCap API Key:**
+
+    - Create an account on the [CoinMarketCap API Page](https://coinmarketcap.com/api/).
+    - Create a new API key and copy it.
+
+4. **Create a Secret File:**
+
+    - Create a new file in the index of the program called 'secret.py'
+    - Inside 'secret.py', add the following line, replacing 'YOUR_API_KEY' with your new CoinMarketCap API key:
+
+        ```python
+        API_KEY = "YOUR_API_KEY"
+        ```
+
+## Running the Application
+
+1. Make sure that the virtual environment is activated
+2. Run the application by typing the following in terminal:
+
     ```bash
-    psql
-    ```  
-2. Create a new database:  
-   ```sql
-   create database tysons_library;
-   ```  
-3. Connect to the database:  
-   ```sh
-   \c tysons_library;
-   ```  
-4. Run the database creation script:  
-   ```sh
-   \i database_creation.sql
-   ```  
-   This will create all tables, constraints, and relationships.
+    python3 main.py
+    ```
 
----
+## Usage
 
-## **ERD (Entity Relationship Diagram)**  
-The **tysons_library_erd.png** file contains a **visual representation** of the database structure. You can open it using any image viewer.  
+The application will run you through adding income, expenses and BTC amounts.
 
-![tysons_library.erd.png](images/tysons_library_erd.png)
----
+## Third-Party Libraries and Licenses
 
-## **Query Scripts**  
+This project uses the following third-party libraries:
 
-### 📌 **1. `average_genre_rating.sql`**  
-**Purpose:** Calculates the average rating for each book genre.  
-**Run:**  
-```sql
-\i average_genre_rating.sql
-```
+*   **certifi:** Mozilla Public License 2.0 (MPL-2.0) [https://www.mozilla.org/en-US/MPL/2.0/](https://www.mozilla.org/en-US/MPL/2.0/)
+*   **charset-normalizer:** MIT License [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+*   **color50:** MIT License [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+*   **idna:** BSD License (typically a 3-clause BSD) [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+*   **requests:** Apache License 2.0 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
+*   **tabulate:** MIT License [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+*   **urllib3:** MIT License [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
 
-### 📌 **2. `books_available.sql`**  
-**Purpose:** Lists books with **authors, genres, and stock availability**.  
-**Run:**  
-```sql
-\i books_available.sql
-```
+Since all the libraries used are permissive licenses, their use in my project is generally considered ethical.
 
-### 📌 **3. `customer_reviews_amount.sql`**  
-**Purpose:** Displays **the number of reviews** each customer has submitted.  
-**Run:**  
-```sql
-\i customer_reviews_amount.sql
-```
+These libraries are used under their respective open-source licenses.
 
-### 📌 **4. `loaned_books.sql`**  
-**Purpose:** Shows **books currently loaned out**, including customer details and due dates.  
-**Run:**  
-```sql
-\i loaned_books.sql
-```
+## References
 
-### 📌 **5. `show_all_reviews_info.sql`**  
-**Purpose:** Retrieves **detailed review information** for books, including ratings.  
-**Run:**  
-```sql
-\i show_all_reviews_info.sql
-```
+- **DK.** (2020). Beginner's Step-by-Step Coding Course. Penguin Random House Australia.
 
-### 📌 **6. `new_customers_borrow.sql`**  
-**Purpose:** Inserts **some new customers and logs some book loans**, while automatically updating stock.  
-**Run:**  
-```sql
-\i new_customers_borrow.sql
-```
+- **freeCodeCamp.org.** (2022). Python for Beginners - Full Course [Free and Complete]. [online] Available at: https://www.youtube.com/watch?v=f3GfkvfpVAE [Accessed 10 Dec. 2024].
 
----
+- **Tech With Tim.** (2019). Python Tutorial for Beginners - Full Course in 11 Hours [2023]. [online] Available at: https://www.youtube.com/watch?v=p71SWzjeqtk [Accessed 10 Dec. 2024].
 
-## **Triggers & Constraints**  
-This database includes **data integrity constraints** to ensure:  
-✅ **Reviews are linked to valid customers and books.**  
+- **CoinMarketCap.** (n.d.). Cryptocurrency Quotes Latest. [online] Available at: https://coinmarketcap.com/api/documentation/v1/#operation/getV2CryptocurrencyQuotesLatest [Accessed 12 Dec. 2024].
 
----
+- **GeeksforGeeks.** (2023). How to Install Requests in Python for Windows, Linux, Mac? [online] Available at: https://www.geeksforgeeks.org/how-to-install-requests-in-python-for-windows-linux-mac/#google_vignette [Accessed 12 Dec. 2024].
 
-## **Testing & Validation**  
-- Run `SELECT * FROM books;` to check book availability.  
-- Try **borrowing a book** by inserting into the `loans` table.  
+- **NetworkChuck.** (2021). Learn Python in 1 Hour - NEVER Give Up. [online] Available at: https://www.youtube.com/watch?v=q5uM4VKywbA [Accessed 12 Dec. 2024].
 
----
+- **Python.org.** (n.d.). venv — Creation of virtual environments. [online] Available at: https://docs.python.org/3/library/venv.html [Accessed 12 Dec. 2024].
 
-## **Author**  
-**Tyson Williams** – Coder Academy Student
+- **Color50.** (n.d.). Color50 Documentation. [online] Available at: https://color50.readthedocs.io/en/latest/index.html [Accessed 19 Dec. 2024].
 
----
+- **Python.org.** (n.d.). csv — CSV File Reading and Writing. [online] Available at: https://docs.python.org/3/library/csv.html#module-contents [Accessed 15 Dec. 2024].
